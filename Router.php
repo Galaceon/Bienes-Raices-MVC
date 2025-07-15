@@ -19,12 +19,20 @@ class Router {
         }
 
         if($fn) {
-            
-
             // La url existe y hay una funcion asociativa
             call_user_func($fn, $this);
         } else {
             echo "Página no encontrada";
         }
+    }
+
+    public function render($view) {
+        ob_start();
+
+        include __DIR__ . "/views/$view.php";
+
+        $contenido = ob_get_clean();
+
+        include __DIR__ . "/views/layout.php";
     }
 }
