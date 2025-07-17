@@ -49,8 +49,12 @@
         </div>
     </header>
 
+
+
     <?php echo $contenido; ?>
 
+
+    
     <footer class="footer seccion">
         <div class="contenedor contenedor-footer">
             <nav class="navegacion">
