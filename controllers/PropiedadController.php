@@ -80,6 +80,40 @@ class PropiedadController {
         $errores = Propiedad::getErrores();
 
 
+        //Ejecutar el código despues de que el usuario envia el formulario
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Asignar los atributos
+            $args = $_POST['propiedad'];
+
+            $propiedad->sincronizar($args);
+
+            // Validacion
+            $errores = $propiedad->validar();
+        
+    
+            // SUBIDA DE ARCHIVOS
+            // Genera un nombre único
+            $nombreImagen = md5( uniqid(rand(), true) ) . ".jpg";
+
+            if($_FILES['propiedad']['tmp_name']['imagen']) {
+                $manager = new Image(Driver::class);
+                $image = $manager->read($_FILES['propiedad']['tmp_name']['imagen'])->cover(800, 600);
+                $propiedad->setImagen($nombreImagen);
+            }
+
+
+            // Revisar que el arreglo de errores este vacio para enviar la info a la db
+            if(empty($errores)) {
+                // Almacenar la imagen
+                if($_FILES['propiedad']['tmp_name']['imagen']) {
+                    $image->save(CARPETA_IMAGENES . $nombreImagen);
+                }
+
+                $propiedad->guardar();
+            }
+        }
+
         $router->render('propiedades/actualizar', [
             'propiedad' => $propiedad,
             'vendedores' => $vendedores,
