@@ -7,7 +7,7 @@ use Controllers\PropiedadController;
 
 $router = new Router();
 
-
+// Propiedades
 $router->get('/admin', [PropiedadController::class, 'index']);
 $router->get('/propiedades/crear', [PropiedadController::class, 'crear']);
 $router->post('/propiedades/crear', [PropiedadController::class, 'crear']);
