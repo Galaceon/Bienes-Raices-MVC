@@ -6,6 +6,9 @@ mobileMenu.addEventListener("click", function() {
     navegacion.classList.toggle('mostrar');
 })
 
+// Nada mas abrir la página, el body sera oscuro
+document.body.classList.add('dark-mode')
+
 function darkMode() {
     const userThemePreferences = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -16,7 +19,6 @@ function darkMode() {
             document.body.classList.remove('dark-mode')
         }
     })
-
 
     botonDarkMode.addEventListener('click', function() {
         document.body.classList.toggle('dark-mode');

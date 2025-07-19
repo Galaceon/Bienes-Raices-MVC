@@ -73,13 +73,13 @@ class ActiveRecord {
     }
 
     // Eliminar un registro
-    public function eliminar() {
+    public function eliminar($tipo) {
         // Eliminar la Propiedad
         $query = "DELETE FROM " . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
         $resultado = self::$db->query($query);
 
         if($resultado) {
-            $this->borrarImagen();
+            $this->borrarImagen($tipo);
 
             header('location: /admin?resultado=3');
         }
@@ -121,7 +121,8 @@ class ActiveRecord {
     public function setImagen($imagen) {
         // Elimina la imagen previa solo si hay ID y una imagen definida
         if (!empty($this->id) && !empty($this->imagen)) {
-            $this->borrarImagen();
+            $tipo = isset($_POST['vendedor']) ? 'vendedor' : 'propiedad';
+            $this->borrarImagen($tipo);
         }
     
         // Asignar la nueva imagen
@@ -131,9 +132,10 @@ class ActiveRecord {
     }
 
     //Eliminar archivo
-    public function borrarImagen() {
-        $rutaImagen = CARPETA_IMAGENES . $this->imagen;
-    
+    public function borrarImagen($tipo) {
+        $carpetaBase = $tipo === 'vendedor' ? CARPETA_FOTOS : CARPETA_IMAGENES;
+        $rutaImagen  = $carpetaBase . $this->imagen;
+
         // Verificar si el archivo existe y es un archivo (no carpeta)
         if (file_exists($rutaImagen) && is_file($rutaImagen)) {
             unlink($rutaImagen);
@@ -213,5 +215,4 @@ class ActiveRecord {
             }
         }
     }
-
 }
