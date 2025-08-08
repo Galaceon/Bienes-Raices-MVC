@@ -30,6 +30,12 @@
     }
 }
 
+.descripcion-anuncio {
+    height: 18rem;
+    max-height: 18rem;
+    overflow: hidden;
+}
+
 .precio {
     font-size: 3rem;
     color: v.$amarillo;
