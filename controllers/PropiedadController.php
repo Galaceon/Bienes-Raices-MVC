@@ -3,6 +3,7 @@ namespace Controllers;
 use MVC\Router;
 use Model\Propiedad;
 use Model\Vendedor;
+use Model\Blog;
 
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager as Image;
@@ -13,6 +14,8 @@ class PropiedadController {
         $propiedades = Propiedad::all();
 
         $vendedores = Vendedor::all();
+
+        $blogs = Blog::all();
         
         // Muestra mensaje condicional
         $resultado = $_GET['resultado'] ?? null;
@@ -20,6 +23,7 @@ class PropiedadController {
         $router->render('propiedades/admin', [
             'propiedades' => $propiedades,
             'vendedores' => $vendedores,
+            'blogs' => $blogs,
             'resultado' => $resultado
         ]);
     }
