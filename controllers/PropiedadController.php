@@ -49,7 +49,7 @@ class PropiedadController {
             if($_FILES['propiedad']['tmp_name']['imagen']) {
                 $manager = new Image(Driver::class);
                 $imagen = $manager->read($_FILES['propiedad']['tmp_name']['imagen'])->cover(800, 600);
-                $propiedad->setImagen($nombreImagen);
+                $propiedad->setImagen($nombreImagen, 'propiedad');
             }
 
             // Validar
@@ -106,7 +106,7 @@ class PropiedadController {
             if($_FILES['propiedad']['tmp_name']['imagen']) {
                 $manager = new Image(Driver::class);
                 $image = $manager->read($_FILES['propiedad']['tmp_name']['imagen'])->cover(800, 600);
-                $propiedad->setImagen($nombreImagen);
+                $propiedad->setImagen($nombreImagen, 'propiedad');
             }
 
 

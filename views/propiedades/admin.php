@@ -12,7 +12,9 @@
 
     <a href="/propiedades/crear" class="boton boton-verde">Nueva Propiedad</a>
     <a href="/vendedores/crear" class="boton boton-amarillo">Nuevo Vendedor</a>
-        
+    <a href="/blogs/crear" class="boton boton-amarillo">Nuevo Blog</a>
+    
+    <!-- PROPIEDADES TABLE -->
     <h2>Propiedades</h2>
     <table class="propiedades">
         <thead>
@@ -46,7 +48,8 @@
         </tbody>
     </table>
 
-            <h2>Vendedores</h2>
+    <!-- VENDEDORES TABLE -->
+    <h2>Vendedores</h2>
 
     <table class="propiedades">
         <thead>
@@ -76,6 +79,42 @@
                         <input type="submit" class="boton-rojo-block" value="Eliminar">
                     </form>
                     <a href="/vendedores/actualizar?id=<?php echo $vendedor->id; ?>" class="boton-amarillo-block">Actualizar</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+
+    <!-- BLOG TABLE -->
+    <h2>Blog</h2>
+
+    <table class="propiedades">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Imagen</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>  <!-- Mostrar los resultados -->
+            <?php foreach($blogs as $blog): ?>
+            <tr>
+                <td> <?php echo $blog->id; ?> </td>
+                <td> <?php echo $blog->titulo; ?> </td>
+                <td> <?php echo $blog->autor; ?> </td>
+                <td> <img src="/blogImages/<?php echo $blog->imagen; ?>" class="imagen-tabla"> </td>
+                <td>
+                    <form method="POST" class="w-100" action="/blogs/eliminar">
+                        <input type="hidden" name="id" value="<?php echo $blog->id; ?>">
+                        <input type="hidden" name="tipo" value="blog">
+
+                        <input type="submit" class="boton-rojo-block" value="Eliminar">
+                    </form>
+                    <a href="/blogs/actualizar?id=<?php echo $blog->id; ?>" class="boton-amarillo-block">Actualizar</a>
                 </td>
             </tr>
             <?php endforeach; ?>

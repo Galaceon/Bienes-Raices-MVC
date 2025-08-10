@@ -118,13 +118,12 @@ class ActiveRecord {
     }
 
     //Subida de archivos
-    public function setImagen($imagen) {
+    public function setImagen($imagen, $tipo) {
         // Elimina la imagen previa solo si hay ID y una imagen definida
         if (!empty($this->id) && !empty($this->imagen)) {
-            $tipo = isset($_POST['vendedor']) ? 'vendedor' : 'propiedad';
             $this->borrarImagen($tipo);
         }
-    
+
         // Asignar la nueva imagen
         if ($imagen) {
             $this->imagen = $imagen;
@@ -132,15 +131,26 @@ class ActiveRecord {
     }
 
     //Eliminar archivo
-    public function borrarImagen($tipo) {
-        $carpetaBase = $tipo === 'vendedor' ? CARPETA_FOTOS : CARPETA_IMAGENES;
-        $rutaImagen  = $carpetaBase . $this->imagen;
-
-        // Verificar si el archivo existe y es un archivo (no carpeta)
-        if (file_exists($rutaImagen) && is_file($rutaImagen)) {
-            unlink($rutaImagen);
-        }
+public function borrarImagen($tipo) {
+    switch ($tipo) {
+        case 'vendedor':
+            $carpetaBase = CARPETA_FOTOS;
+            break;
+        case 'propiedad':
+            $carpetaBase = CARPETA_IMAGENES;
+            break;
+        case 'blog':
+            $carpetaBase = CARPETA_BLOGIMAGES;
+            break;
+        default:
+            $carpetaBase = '';
     }
+    $rutaImagen = $carpetaBase . $this->imagen;
+
+    if ($carpetaBase && file_exists($rutaImagen) && is_file($rutaImagen)) {
+        unlink($rutaImagen);
+    }
+}
 
     // Lista todos los registros
     public static function all() {

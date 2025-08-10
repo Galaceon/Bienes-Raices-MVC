@@ -28,7 +28,7 @@ class VendedorController {
             if($_FILES['vendedor']['tmp_name']['imagen']) {
                 $manager = new Image(Driver::class);
                 $imagen = $manager->read($_FILES['vendedor']['tmp_name']['imagen'])->cover(800, 600);
-                $vendedor->setImagen($nombreImagen);
+                $vendedor->setImagen($nombreImagen, 'vendedor');
             }
 
             // Validar que no haya campos vacios
@@ -80,7 +80,7 @@ class VendedorController {
             if($_FILES['vendedor']['tmp_name']['imagen']) {
                 $manager = new Image(Driver::class);
                 $image = $manager->read($_FILES['vendedor']['tmp_name']['imagen'])->cover(800, 600);
-                $vendedor->setImagen($nombreImagen);
+                $vendedor->setImagen($nombreImagen, 'vendedor');
             }
 
             if(empty($errores)) {
