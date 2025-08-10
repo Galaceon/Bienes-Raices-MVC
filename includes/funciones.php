@@ -4,6 +4,8 @@ define('TEMPLATES_URL', __DIR__ . '/templates'); //nombre de la constante y su r
 define('FUNCIONES_URL', __DIR__ . 'funciones.php'); // __DIR__ : Da la ruta absoluta de este archivo, C:\users\anton\Escritorio\bienesraices\includes\funciones.php
 define('CARPETA_IMAGENES', $_SERVER['DOCUMENT_ROOT'] . '/imagenes/');
 define('CARPETA_FOTOS', $_SERVER['DOCUMENT_ROOT'] . '/fotos/');
+define('CARPETA_BLOGIMAGES', $_SERVER['DOCUMENT_ROOT'] . '/blogImages/');
+
 
 function incluirTemplate( string $nombre, bool $inicio = false) {
     include  TEMPLATES_URL . "/$nombre.php";
@@ -34,7 +36,7 @@ function s($html) : string {
 
 // Validar tipo de contenido
 function validarTipoContenido($tipo) {
-    $tipos = ['vendedor', 'propiedad'];
+    $tipos = ['vendedor', 'propiedad', 'blog'];
 
     return in_array($tipo, $tipos);
 }

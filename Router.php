@@ -15,8 +15,9 @@ class Router {
     }
 
     public function comprobarRutas() {
-        $urlActual = $_SERVER['PATH_INFO'] ?? '/';
-        $metodo = $_SERVER['REQUEST_METHOD'];
+        
+        $urlActual = $_SERVER['PATH_INFO'] ?? '/'; //"/blogs/crear"
+        $metodo = $_SERVER['REQUEST_METHOD']; // POST O GET
 
         if($metodo === 'GET') {
             $fn = $this->rutasGET[$urlActual] ?? null;

@@ -27,6 +27,10 @@
 }
 
 .texto-entrada {
+    .index-entrada {
+        max-height: 19.5rem;
+        overflow: hidden;
+    }
     a {
         color: v.$negro;
         display: block;

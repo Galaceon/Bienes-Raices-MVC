@@ -4,14 +4,18 @@ namespace Controllers;
 
 use MVC\Router;
 use Model\Propiedad;
+use Model\Blog;
+
 
 class PaginasController {
     public static function index(Router $router) {
         $propiedades = Propiedad::get(3);
+        $blogs = Blog::get(2);
         $inicio = true;
 
         $router->render('paginas/index', [
             'propiedades' => $propiedades,
+            'blogs' => $blogs,
             'inicio' => $inicio
         ]);
     }
@@ -37,10 +41,21 @@ class PaginasController {
         ]);
     }
     public static function blog(Router $router) {
-        $router->render('paginas/blog');
+        $blogs = Blog::all();
+
+        $router->render('paginas/blog', [
+            'blogs' => $blogs
+        ]);
     }
     public static function entrada(Router $router) {
-        $router->render('paginas/entrada');
+        $id = validarORedireccionar('/');
+
+        // Busca la entrada por su ID
+        $blog = Blog::find($id);
+
+        $router->render('paginas/entrada', [
+            'blog' => $blog
+        ]);
     }
     public static function contacto() {
         echo "Desde contacto";

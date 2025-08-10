@@ -8,7 +8,6 @@
     <h2>Casas y Departamentos en Venta</h2>
 
     <?php
-        $limite = 3;
         include 'listado.php'; 
     ?>
 
@@ -27,41 +26,22 @@
     <section class="blog">
         <h3>Nuestro Blog</h3>
 
+        <?php foreach($blogs as $blog) : ?>
         <article class="entrada-blog">
             <div class="imagen">
-                <img loading="lazy" src="build/img/blog1.webp" alt="blog image">
+                <img loading="lazy" src="/blogImages/<?php echo $blog->imagen; ?>" alt="blog image">
             </div>
 
             <div class="texto-entrada">
-                <a href="entrada">
-                    <h4>Terraza en el techo de tu casa</h4>
-                    <p>Escritorio el: <span> 20/10/2025 </span> por: <span>Admin</span> </p>
+                <a href="/entrada?id=<?php echo $blog->id; ?>" class="index-entrada">
+                    <h4><?php echo $blog->titulo; ?></h4>
+                    <p>Escritorio el: <span> <?php echo $blog->creado; ?> </span> por: <span> <?php echo $blog->autor; ?> </span> </p>
 
-                    <p>
-                        Consejos para construir una terraza en el techo de tu casa con los mejores
-                        materiales y ahorrando dinero
-                    </p>
+                    <p> <?php echo $blog->contenido; ?> </p>
                 </a>
             </div>
         </article>
-
-        <article class="entrada-blog">
-            <div class="imagen">
-                <img loading="lazy" src="build/img/blog2.webp" alt="blog image">
-            </div>
-        
-            <div class="texto-entrada">
-                <a href="entrada">
-                    <h4>Guía para la decoración de tu hogar</h4>
-                    <p>Escritorio el: <span> 20/10/2025 </span> por: <span>Admin</span> </p>
-        
-                    <p>
-                        Maximiza el espacio en tu hogar con esta guía, aprende a combinar muebles y colores 
-                        para darle vida a tu espacio
-                    </p>
-                </a>
-            </div>
-        </article>
+        <?php endforeach; ?>
     </section>
 
     <section class="testimoniales">
