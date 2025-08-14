@@ -1,6 +1,10 @@
 <main class="contenedor seccion contenido-centrado">
     <h1>Contacto</h1>
 
+    <?php if($mensaje) { ?>
+        <p class='alerta exito'> <?php echo $mensaje ?> </p>;
+    <?php } ?>
+
     <img src="build/img/destacada3.webp" alt="contacto image">
 
     <h2>Llene el formulario de Contacto</h2>
@@ -11,12 +15,6 @@
 
             <label for="nombre">Nombre</label>
             <input type="text" placeholder="Tu nombre" id="nombre" name="contacto[nombre]">
-
-            <label for="email">E-mail</label>
-            <input type="email" placeholder="Tu email" id="email" name="contacto[email]">
-
-            <label for="telefono">Telefono</label>
-            <input type="tel" placeholder="Tu telefono" id="telefono" name="contacto[telefono]">
 
             <label for="mensaje">Mensaje:</label>
             <textarea id="mensaje" name="contacto[mensaje]"></textarea>
@@ -47,16 +45,11 @@
 
                 <label for="contactar-email">Email</label>
                 <input type="radio" value="email" id="contactar-email" name="contacto[contacto]">
-
             </div>
 
-            <p>Si eligío teléfono, elija la fecha y la hora</p>
-
-            <label for="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="contacto[fecha]">
-            
-            <label for="hora">Hora:</label>
-            <input type="time" id="hora" min="09:00" max="18:00" name="contacto[hora]">
+            <div id="contacto">
+                <!-- JS llamada y Email form -->
+            </div>
         </fieldset>
 
         <input type="submit" value="Enviar" class="boton-verde">
