@@ -17,6 +17,19 @@ class Admin extends ActiveRecord {
         $this->password = $args['password'] ?? null;
     }
 
+    // Sobre-escribir guardar para hashear la contraseña antes de insertar/actualizar
+    public function guardar() {
+        // Si se envía una contraseña y no está hasheada, la hasheamos
+        if (!empty($this->password)) {
+            $info = password_get_info($this->password);
+            if ($info['algo'] === 0) {
+                $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+            }
+        }
+
+        parent::guardar();
+    }
+
     public function validar() {
         if(!$this->email) {
             self::$errores[] = 'El email es obligatorio';

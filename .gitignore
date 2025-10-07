@@ -4,5 +4,14 @@ node_modules/
 # Composer (PHP)
 /vendor/
 
-# Gulp - archivos generados 
+# Gulp - generated files
 /public/build/
+
+# Environment variables file
+.env
+
+# If you are using a Mac
+.DS_Store
+
+# Test Scripts
+/tests/
